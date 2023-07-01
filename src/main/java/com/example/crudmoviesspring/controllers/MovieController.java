@@ -1,9 +1,10 @@
-package com.example.crudmoviesspring.controller;
+package com.example.crudmoviesspring.controllers;
 
-import com.example.crudmoviesspring.domain.Movie;
-import com.example.crudmoviesspring.domain.MovieRepository;
-import com.example.crudmoviesspring.domain.MovieRequestDTO;
+import com.example.crudmoviesspring.domain.movie.Movie;
+import com.example.crudmoviesspring.domain.movie.MovieRequestDTO;
+import com.example.crudmoviesspring.repositories.MovieRepository;
 import jakarta.persistence.EntityNotFoundException;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -24,20 +25,20 @@ public class MovieController {
     }
 
     @GetMapping("/search/{id}")
-    public ResponseEntity getMovieById(@PathVariable String id){
+    public ResponseEntity getMovieById(@PathVariable @Valid String id){
         var idMovie = moviesRepository.findById(id);
         return ResponseEntity.ok(idMovie);
     }
 
     @PostMapping
-    public ResponseEntity registerMovies(@RequestBody MovieRequestDTO data){
+    public ResponseEntity registerMovies(@RequestBody @Valid MovieRequestDTO data){
         Movie newMovie = new Movie(data);
         moviesRepository.save(newMovie);
         return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public ResponseEntity updateMovies(@RequestBody MovieRequestDTO data){
+    public ResponseEntity updateMovies(@RequestBody @Valid MovieRequestDTO data){
         Optional<Movie> optionalMovies = moviesRepository.findById(data.id());
         if(optionalMovies.isPresent()){
             Movie movie = optionalMovies.get();
@@ -54,7 +55,7 @@ public class MovieController {
     }
 
     @DeleteMapping("/{id}")
-    public ResponseEntity deleteMovies(@PathVariable String id){
+    public ResponseEntity deleteMovies(@PathVariable @Valid String id){
        Optional<Movie> optionalMovie = moviesRepository.findById(id);
 
        if (optionalMovie.isPresent()) {
