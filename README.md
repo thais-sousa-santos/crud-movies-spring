@@ -3,6 +3,7 @@
 
 Este projeto foi iniciado com a intenção de treinar como aplicar um CRUD básico de uma locadora de filmes.
 
+Estamos utilizando o Spring Security para a parte de autenticação e toda sua validação de usuário e token.
 
 ## Documentação da API
 
