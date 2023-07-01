@@ -6,6 +6,27 @@ Este projeto foi iniciado com a intenção de treinar como aplicar um CRUD bási
 
 ## Documentação da API
 
+#### Endpoint para cadastrar um usuario
+
+```http
+  POST /auth/register
+```
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `login`      | `string` | **Obrigatório**. O nome do username que você quer cadastrar |
+| `password`      | `string` | **Obrigatório**. A senha do usuario cadastrado |   
+| `role`      | `String` | **Obrigatório**. A role (permissao) que o usuário vai ter em nosso sistema. Exemplo: USER ou ADMIN|
+
+#### Endpoint para logar com um usuario
+
+```http
+  POST /auth/login
+```
+| Parâmetro   | Tipo       | Descrição                                   |
+| :---------- | :--------- | :------------------------------------------ |
+| `login`      | `string` | **Obrigatório**. O nome do username que você quer fazer o login na aplicacao |
+| `password`      | `string` | **Obrigatório**. A senha do usuario |
+
 #### Retorna todos os filmes para venda
 
 ```http
@@ -53,7 +74,6 @@ Este projeto foi iniciado com a intenção de treinar como aplicar um CRUD bási
 ```http
   DELETE /movies/{id}
 ```
-
 
 
 
